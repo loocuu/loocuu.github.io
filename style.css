@@ -74,6 +74,7 @@ body{
   }
   .location section{
     position: relative;
+    z-index:998;
     display: block;
     top: 230px;
     left: 270px;
@@ -142,10 +143,14 @@ body{
     background: url(images/photo-workspace.png) center/cover no-repeat;
   }
   #bg .careers{
-    background: url(images/photo-main.png) center/cover no-repeat;
+    background: url(images/photo-careers.png) center/cover no-repeat;
   }
   #bg .location{
       background: url(images/photo-loader.png) center/cover no-repeat;
+  }
+  #mapContainer{
+    position:absolute;top:230px;
+    height:640px;;width:100%;
   }
 .loader{
   width:100%;height:100%;position:fixed;
@@ -172,6 +177,7 @@ body{
   transform: rotate(180deg);
 }
 .menu{
+  z-index:999;
   width:100%;
   position:absolute;
   z-index.:999;
@@ -198,3 +204,36 @@ body{
 }
 #content{display:none;}
 .loader img{position:relative;top: calc(50% - 103px);}
+
+/* gmaps */
+#infoWindow p{
+	margin: 0;
+	font-size:15px;
+	font-weight:400;
+}
+#infoWindow h4{
+	font-size:15px;
+	font-weight:bold;
+	margin-top:0;
+}
+.gm-style > div:first-child > div:nth-child(3) > div > div > div > div{
+	display:none;
+}
+#infoWindow{
+	background-color:#0d132d;
+	color:#f8f8ff;
+	padding:20px;
+	position:relative;
+	  margin-bottom: 14px;
+}
+#infoWindow:after {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 137px;
+  border-top: 14px solid #0d132d;
+  border-right: 14px solid transparent;
+  border-left: 14px solid transparent;
+}
+
+/* google maps related end*/
