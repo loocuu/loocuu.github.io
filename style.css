@@ -1,7 +1,9 @@
 *{-webkit-box-sizing: border-box;
    -moz-box-sizing: border-box;
         box-sizing: border-box;
+        
         }
+
 body,html{width:100%,height:100%;margin:0;-webkit-user-select:none;border:0;}
 body{
   color:white;
@@ -71,6 +73,13 @@ body{
   }
   .workspace .content{
     width:525px;
+  }
+  .careers section{
+    top:175px;
+    left:210px;
+  }
+  .careers section h1{
+    font-weight:normal;
   }
   .location section{
     position: relative;
@@ -169,6 +178,7 @@ body{
 }
 .arrow img{
   padding: calc(50% - 13px) calc(50% - 25px);
+  cursor:pointer;
 }
 .arrow.white{
   background-color:rgba(255,255,255,0.12);
@@ -194,14 +204,21 @@ body{
   background-color:rgba(255,255,255,0.60);
   color:rgb(0,35,93);
 }
+.menu.white li:hover{
+  background-color:rgba(0,35,93,0.20);
+}
 .menu li{
   display:inline-block;
   padding:36px;
   cursor:pointer;
 }
+.menu li:hover{
+  background-color:rgba(255,255,255,0.04);
+}
 .menu li.active{
   background-color:rgba(255,255,255,0.13);
 }
+
 #content{display:none;}
 .loader img{position:relative;top: calc(50% - 103px);}
 
@@ -237,3 +254,12 @@ body{
 }
 
 /* google maps related end*/
+/* erecruter fix */
+.skk_container,.skk_offers td:first-child,.skk_offers {
+  background:none!important;
+}
+.skk_row_even, .skk_row_odd{
+  background-color:rgba(78,81,80,0.27)!important;
+  display:block;
+  margin-bottom:3px;
+}

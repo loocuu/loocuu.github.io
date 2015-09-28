@@ -10,12 +10,12 @@ function closeLoader(){
   $('#wrapper').addClass('main').show();
   $('#bg').css('top','-'+$('#bg .main').position().top+'px');
 }
-
+initPage();
 $(window).load(function(){
   console.log(hash);
   var loadTime = (Date.now()-timerStart);
   console.log('loaded',loadTime);
-  setTimeout(initPage,delay-loadTime);
+  //setTimeout(initPage,delay-loadTime);
 
 })
 
@@ -28,11 +28,14 @@ function setState(state){
     $('.menu li').removeClass('active');
     if(logoState) hideLogo();
     document.getElementById("wrapper").className = state;
-    $('#wrapper .replacable').hide().empty().append( $('#'+state).clone()).fadeIn();
+    $('#wrapper .replacable').hide().empty().append( $('#'+state).clone(true)).fadeIn();
+
+  
+    if(state=='location'){initializeMap()};
     $('#bg').css('top','-'+$('#bg .'+state).position().top+'px');console.log('position changed');
     //history.pushState({}, '', '#'+state);
     console.log(state);
-    if(state=='location'){initializeMap()};
+
       $('.menu li[data-target="'+state+'"]').addClass('active');
   }
 }
@@ -117,13 +120,47 @@ $(function(){
   $(window).bind('mousewheel', function(event) {
     if(event.timeStamp-lastScroll>200){
       lastScroll=event.timeStamp;
-      if(event,event.originalEvent.deltaY>0){
+      if(event.originalEvent.deltaY>0){
         setNextState();
       } else{
         setPrevState();
       };
     }
    });
+   var mD = 0;
+   $('body').on('touchstart mousedown', function(event){
+      //console.log(event.originalEvent.touches[0].clientY,event.type);
+      if(event.type==="touchstart"){
+
+        mD=event.originalEvent.touches[0].clientY;
+      }else{
+        mD=event.clientY;
+      }
+    });
+    var prevent = false;
+    $('#mapContainer').on('mouseup touchend',function(event){
+      prevent=true;
+      console.log('eh',event);
+    });
+    $('#location').on('mouseup touchend',function(event){
+      if(prevent===true){
+      event.stopPropagation();
+      console.log('eh',event);
+      }
+      prevent=false;
+
+    })
+
+   $('body').on('touchend mouseup', function(event){
+
+      var currentY = event.type==="touchend"?event.originalEvent.changedTouches[0].clientY:event.clientY;
+      if(currentY<mD){
+        setNextState();
+      }else{
+        setPrevState();
+      }
+      console.log(event);
+    });
    //start map when page loaded
    //google.maps.event.addDomListener(window, 'load', initializeMap);
 });
