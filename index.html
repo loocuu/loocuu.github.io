@@ -15,89 +15,98 @@
 </head>
 <body>
 <div id="wrapper">
-  <div class="logo"><img src="images/logo.png"/></div>
+  <div id="bg">
+    <div class="start">
+      <div class="logo"><img src="images/logo.png"/></div>
+      <div class="arrow down"><img src="images/nav_arrow.png" onclick="setState('main')"></div>
+    </div>
+    <div class="main">
+      <div class="content">
+        <strong>FORTRESS Gaming</strong> Technologies S.A. (FGT S.A.) was founded as an R&D unit of NOVOMATIC Group of
+        Companies – an Austrian gaming and entertainment leader with a global reach. FGT S.A. specializes
+        in the development of casino and lottery management systems and applications. Since the beginning,
+        the company has placed an emphasis on the development and implementation of new technologies,
+        which allows it to retain a strong position on the very competitive market.
+        NOVOMATIC Group of Companies currently employs about 20 000 employees and generates an
+        annual revenue of over 3.5 billion euro.
+      </div>
+    </div>
+    <div class="technology">
+      <section>
+        <h1>Modern<br>technologies</h1>
+        <div class="content">
+          <strong>Our software</strong> engineers enjoy working with state-of-the-art technologies and have the opportunity to
+          develop their skills on a daily basis.
+        </div>
+      </section>
+    </div>
+    <div class="workspace">
+      <div class="navigation">
+        <div class="arrow left"><img src="images/nav_arrow.png" ></div>
+        <div class="arrow right"><img src="images/nav_arrow.png"></div>
+      </div>
+      <section>
+        <h1><em>Creative</em> workspace</h1>
+        <div class="content">
+          <strong>The company office</strong> is located in a revitalized 19th century fort. Its modern interior is enclosed within
+          a distinctive tube shape which reflects the historical purpose of the building. Each team has a
+          separate, well-equipped room. A part of the observation deck is used as a terrace for our BBQ get-togethers.
+        </div>
+      </section>
+
+    </div>
+    <div class="careers">
+      <section>
+      <h1>Careers</h1>
+        <script type='text/javascript' src='http://skk.erecruiter.pl/Code.ashx?cfg=97ae7dcf244342ea8fe8a90e25ba6ecb'></script>
+      </section>
+    </div>
+    <div class="location">
+      <div class="logo-locaction"><h1>Location</h1></div>
+      <section>
+        <img src="images/contact_photo.png">
+        <div class="content">
+          <strong>FORTRESS Gaming Technologies S.A.</strong>
+          <div class="address">
+            <br/>
+            Fort 47A, Forteczna 5<br/>
+            32-086 Wegrzce<br/><br/>
+            +48 12 617 67 00<br/>
+            +48 12 418 38 86<br/><br/>
+            office@fgtsa.com
+          </div>
+        </div>
+    </section>
+      <div id="mapContainer"></div>
+      <div class="arrow white"><img src="images/nav_arrow.png" onclick="setState('main')"></div>
+      <div class="footer">FORTRESS Gaming Technologies S.A. Copyright &copy; 2015</div>
+    </div>
+  </div>
+
   <ul class="menu white">
-    <li class="active" data-target="main">company</li>
+    <li class="start active">start</li>
+    <li data-target="main">company</li>
     <li data-target="technology">technology</li>
     <li data-target="workspace">workspace</li>
     <li data-target="careers">careers</li>
     <li data-target="location">location</li>
   </ul>
   <div class="replacable">
-    <div class="arrow down"><img src="images/nav_arrow.png" onclick="setState('main')"></div>
+
   </div>
+
 </div>
-<div id="bg">
-  <div class="start"></div>
-  <div class="main"></div>
-  <div class="technology"></div>
-  <div class="workspace"></div>
-  <div class="careers"></div>
-  <div class="location"></div>
-</div>
+
 <div class="loader">
   <img src="images/logo-big.png"/>
 </div>
 
 <div id="content">
-  <div id="main">
-    <div class="content">
-      <strong>FORTRESS Gaming</strong> Technologies S.A. (FGT S.A.) was founded as an R&D unit of NOVOMATIC Group of
-      Companies – an Austrian gaming and entertainment leader with a global reach. FGT S.A. specializes
-      in the development of casino and lottery management systems and applications. Since the beginning,
-      the company has placed an emphasis on the development and implementation of new technologies,
-      which allows it to retain a strong position on the very competitive market.
-      NOVOMATIC Group of Companies currently employs about 20 000 employees and generates an
-      annual revenue of over 3.5 billion euro.
-    </div>
-  </div>
-  <div id="technology">
-    <section>
-      <h1>Modern<br>technologies</h1>
-      <div class="content">
-        <strong>Our software</strong> engineers enjoy working with state-of-the-art technologies and have the opportunity to
-        develop their skills on a daily basis.
-      </div>
-    </section>
-  </div>
-  <div id="workspace">
-    <section>
-      <h1><em>Creative</em> workspace</h1>
-      <div class="content">
-        <strong>The company office</strong> is located in a revitalized 19th century fort. Its modern interior is enclosed within
-        a distinctive tube shape which reflects the historical purpose of the building. Each team has a
-        separate, well-equipped room. A part of the observation deck is used as a terrace for our BBQ get-togethers.
-      </div>
-    </section>
-  </div>
-  <div id="careers">
-    <section>
-    <h1>Careers</h1>
-      <script type='text/javascript' src='http://skk.erecruiter.pl/Code.ashx?cfg=97ae7dcf244342ea8fe8a90e25ba6ecb'></script>
-    </section>
-  </div>
-  <div id="location">
-    <div class="logo-locaction"><h1>Location</h1></div>
-    <section>
-      <img src="images/contact_photo.png">
-      <div class="content">
-        <strong>FORTRESS Gaming Technologies S.A.</strong>
-        <div class="address">
-          <br/>
-          Fort 47A, Forteczna 5<br/>
-          32-086 Wegrzce<br/><br/>
-          +48 12 617 67 00<br/>
-          +48 12 418 38 86<br/><br/>
-          office@fgtsa.com
-
-        </div>
-
-      </div>
-  </section>
-    <div id="mapContainer"></div>
-    <div class="arrow white"><img src="images/nav_arrow.png" onclick="setState('main')"></div>
-    <div class="footer">FORTRESS Gaming Technologies S.A. Copyright &copy; 2015</div>
-  </div>
+  <div id="main"></div>
+  <div id="technology"></div>
+  <div id="workspace"></div>
+  <div id="careers"></div>
+  <div id="location"></div>
 </div>
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
