@@ -1,10 +1,12 @@
 var logoState = true,
     pageState = "start",
     hash = window.location.hash?window.location.hash:undefined,
-    delay = 100,
+    delay = 1000,
     count = 0,
     lastScroll = 0,
     map,
+    pId=0,
+    pCount=2,
     dragIgnore = 50;
     //map styles
 var mapGrayscale =[{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}];
@@ -19,13 +21,15 @@ function closeLoader(){
 $(window).load(function(){
   console.log(hash);
   var loadTime = (Date.now()-timerStart);
-  console.log('loaded',loadTime);
+  //console.log('loaded',loadTime);
   setTimeout(initPage,delay-loadTime);
-  initializeMap();
+
 })
 function hideLogo(){
   //$('#wrapper .logo').css('marginTop','-'+$('.logo').height()+'px');
-  $('.menu').removeClass('white');
+  $('.menu').addClass('fixed').animate({
+    top: 0
+  }).removeClass('white');
   $('#wrapper .content').fadeIn();
   logoState=false;
 }
@@ -37,7 +41,10 @@ function setState(state){
     //document.getElementById("wrapper").className = pageState;
     //$('#wrapper .replacable').hide().empty().append( $('#'+pageState).clone(true)).fadeIn();
     //if(state=='location'){initializeMap()};
-    $('#bg').css('top','-'+($('#bg .'+pageState).position().top)+'px');
+    //$('#bg').css('top','-'+($('#bg .'+pageState).position().top)+'px');
+    $('#wrapper').animate({
+      scrollTop: $('#bg .'+pageState).position().top
+    });
     history.pushState({}, '', '#'+pageState);
     $('.menu li[data-target="'+pageState+'"]').addClass('active');
   }
@@ -48,18 +55,42 @@ function setNextState(){
 function setPrevState(){
   setState(  $('.menu li.active').prev().data('target') ) ;
 }
+function nextPhoto(){
+  if(!$('.navigation .arrow.right').hasClass('disabled')&&pageState=='workspace'){
+    pId++;
+    if(pId<pCount){
+      $('.navigation .arrow.left').removeClass('disabled');
+    } else{
+      $('.navigation .arrow.right').addClass('disabled');
+    }
+    var calcWidth = - pId*$('.gallery').outerWidth(true);
+    $('.workspaceContent ').css('marginLeft',calcWidth+'px')
+  }
+}
+function prevPhoto(){
+  if(!$('.navigation .arrow.left').hasClass('disabled')&&pageState=='workspace'){
+    pId--;
+    if(pId>0){
+        $('.navigation .arrow.right').removeClass('disabled');
+    }else{
+      $('.navigation .arrow.left').addClass('disabled');
+    }
+    var calcWidth = - pId*$('.gallery').outerWidth(true);
+    $('.workspaceContent ').css('marginLeft',calcWidth+'px')
+  }
+}
 function initPage(){
   closeLoader();
   if(hash !== undefined){
 
     setState(hash.split('#')[1]);
   }
-
+  initializeMap();
 }
 //map initailize function
 function initializeMap() {
 	var TILE_SIZE = 256;
-	var wegrzce = new google.maps.LatLng(50.115633,19.96635);
+	var wegrzce = new google.maps.LatLng(50.115983,19.96605);
 	//var center = new google.maps.LatLng(50.119106,19.96736);
 	var center = new google.maps.LatLng(50.096418, 19.921529);
   var mapOptions = {
@@ -87,7 +118,7 @@ function initializeMap() {
 		map: map,
 		title: 'FGT S.A.',
 		labelContent: "test",
-    icon:'images/marker.png',
+    icon:'images/marker2.png',
 	});
    	var service = new google.maps.places.PlacesService(map);
    	service.textSearch(request2,function (results, status){
@@ -135,6 +166,24 @@ $(function(){
       };
     }
    });
+   $(window).keyup(function(e) {
+     console.log(e.which);
+     switch (e.which) {
+       case 37:
+         prevPhoto();
+         break;
+       case 38:
+         setPrevState();
+         break;
+       case 39:
+         nextPhoto();
+         break;
+       case 40:
+         setNextState();
+         break;
+       default:
+     };
+   });
    var mD = 0;//mousedown position
    $('body').on('touchstart mousedown', function(event){
       //console.log(event.originalEvent.touches[0].clientY,event.type);
@@ -168,6 +217,13 @@ $(function(){
           setPrevState();
         }
       }
+    });
+    $('.navigation .arrow').click(function(){
+        if($(this).hasClass('right')){
+          nextPhoto();
+        }else{
+          prevPhoto();
+        }
     });
    //start map when page loaded
 

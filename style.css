@@ -69,6 +69,7 @@ body{
     right:0;
     top:400px;
     text-align: right;
+    white-space: normal;
   }
   .technology section{
     top:490px;
@@ -93,6 +94,7 @@ body{
   .careers section{
     top:175px;
     left:210px;
+    width:400px;
   }
   .careers section h1{
     font-weight:normal;
@@ -125,14 +127,14 @@ body{
   .logo{
     text-align:center;
     height:230px;
-  background: url(images/logo_bg.png) top center no-repeat;
+  background: url(images/logo_bg.png) top center/cover no-repeat;
   -webkit-transition: all 2s;
   transition: all 2s;
   }
   .logo-locaction{
     width:100%;
     height:230px;
-    background: url(images/logo_bg.png) top center no-repeat;
+    background: url(images/logo_bg.png) top center/cover no-repeat;
   -webkit-transition: all 2s;
   transition: all 2s;
     padding: 146px 330px 0;
@@ -146,15 +148,42 @@ body{
     padding:47px;
     color:#9eb6de;
     text-align:right;
-  background: url(images/footer_bg.png) no-repeat;
+  background: url(images/footer_bg.png) center/cover no-repeat;
   height:100px;
   -webkit-transition: all 2s;
   transition: all 2s;
   }
   #bg{position:absolute;  -webkit-transition: all 1s;transition: all 1s;}
-  #bg, #bg > div{
+  #bg, #bg > div,.gallery > div{
     width:100%;height:100%;
   }
+
+  .gallery{
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    white-space: nowrap;
+
+  }
+  .gallery > div{
+        vertical-align: top;
+    display:inline-block;
+    -webkit-transition: all 2s;
+    transition: all 2s;
+  }
+  #p1{
+      background: url(images/photo-workspace1.png) center/cover no-repeat;
+  }
+  #p2{
+      background: url(images/photo-workspace2.png) center/cover no-repeat;
+  }
+  #p3{
+      background: url(images/photo-workspace3.png) center/cover no-repeat;
+  }
+  #p4{
+      background: url(images/photo-workspace4.png) center/cover no-repeat;
+  }
+
   #bg .start{
     background: url(images/photo-main.png) center/cover no-repeat;
   }
@@ -170,13 +199,20 @@ body{
   #bg .careers{
     background: url(images/photo-careers.png) center/cover no-repeat;
   }
+  .loader div{
+    background: rgba(0,35,93,0.82);
+
+  }
   #mapContainer{
     height:640px;width:100%;
   }
 .loader{
   width:100%;height:100%;position:fixed;
-  background: rgba(0,35,93,0.82);
+    background: url(images/photo-loader.jpg) center/cover no-repeat;
   color:white;text-align:center;
+}
+.loader > div{
+  width:100%;height:100%;
 }
 .start .arrow{
   bottom: 0;
@@ -189,10 +225,11 @@ body{
   height:100px;
   z-index:999;
   -webkit-transition: all 2s;
+  cursor:pointer;
 }
 .arrow img{
   padding: calc(50% - 13px) calc(50% - 25px);
-  cursor:pointer;
+
 }
 .arrow.white{
   background-color:rgba(255,255,255,0.12);
@@ -206,6 +243,11 @@ body{
 .arrow.down{
   transform: rotate(180deg);
 }
+.navigation .arrow.disabled{
+  opacity:0.5;
+  cursor:default;
+}
+
 .menu{
   z-index:999;
   width:100%;
@@ -218,12 +260,16 @@ body{
   height:100px;
   color:white;
   text-transform:uppercase;
--webkit-transition: all 2s;
+
 }
 .menu.white{
   background-color:rgba(255,255,255,0.60);
   color:rgb(0,35,93);
   top:230px;
+
+}
+.fixed{
+  position:fixed;
 }
 .menu.white li:hover{
   background-color:rgba(0,35,93,0.20);
@@ -288,4 +334,7 @@ body{
   background-color:rgba(78,81,80,0.27)!important;
   display:block;
   margin-bottom:3px;
+}
+.skk_row_even:hover, .skk_row_odd:hover{
+  background-color:rgba(78,81,80,0.47)!important;
 }
