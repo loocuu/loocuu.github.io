@@ -3,21 +3,23 @@
         box-sizing: border-box;
 
         }
-
-body,html{width:100%,height:100%;margin:0;-webkit-user-select:none;border:0;}
+html{font-size:18px;}
+body,html{width:100%;height:100%;margin:0;
+  -webkit-user-select:none;border:0;
+  -moz-user-select: none;}
 body{
   color:white;
   font-family:Roboto Condensed;
-  font-size:18px;
+
   overflow:hidden;
 }
+
 #wrapper{
-  display:none;
   width:100%;
   height:100%;
   overflow:hidden;
   position:fixed;
-  z-index:1000;
+  z-index:100;
   }
 
   h1{
@@ -50,19 +52,14 @@ body{
     text-transform:uppercase;
     font-family:Rajdhani;
   }
-  .main{
-    position:relative;
-  }
   .main .content{
     left:100px;
     bottom:100px;
-    width:50%;
+    width:39%;
       position:absolute;
+      display:none;
   }
-  section{
-      position:relative;
-  }
-  #content section{
+  .main, section,.workspace,.careers,.location{
     position:relative;
   }
   .technology section,.workspace section, #workspace section{
@@ -72,7 +69,7 @@ body{
     white-space: normal;
   }
   .technology section{
-    top:490px;
+    top:50%;
   }
   .technology .content,#technology .content{
     width:400px;
@@ -91,14 +88,72 @@ body{
     right:0;
     left:inherit;
   }
+  #bvIcon{
+    position:absolute;
+    bottom:20px;
+    width:100%;
+    text-align:center;
+    z-index: 1003;
+  }
   .careers section{
-    top:175px;
-    left:210px;
+    top:265px;
+    left:185px;
     width:400px;
   }
-  .careers section h1{
-    font-weight:normal;
+  .careers .offer{
+  background-color:rgba(127,127,127,0.8);
+  width: 50%;
+  display:none;
+  right:100px;
+  top:100px;
+  position:absolute;
+  padding:25px 50px;
+      font-size: 0.9em;
   }
+  .careers .offer h2{
+    margin-top:0;
+  }
+  .careers .offer h3{
+    margin-bottom:0;
+  }
+  .careers .offer h4{
+    margin:0;
+  }
+  .careers .offer ul{
+    margin-top:0;
+  }
+  .careers .offer.active{
+    display:block;
+  }
+  .careers .offer h3 span{
+    font-weight:normal;
+    font-size:1rem;
+  }
+  .careers .offer h4{
+    margin-left:10px;
+  }
+  .careers section ul{
+    padding:0;
+  }
+  .careers section ul li{
+    cursor:pointer;
+    list-style:none;
+    background-color:rgba(127,127,127,0.5);
+    padding:15px 30px;
+    display:block;
+    margin:2px;
+  }
+  .careers .ico{
+    float:right;
+  }
+  .careers h1{
+    text-align:left;
+    padding:0;
+    width:100%;
+  }
+/*  .careers section h1{
+    font-weight:normal;
+  }*/
   .location section{
     position: absolute;
     z-index:998;
@@ -106,37 +161,84 @@ body{
 
     left: 270px;
     width:563px;
-    -webkit-transition: all 2s;
-    transition: all 2s;
+    /*-webkit-transition: all 2s;
+    transition: all 2s;*/
   }
   .location section img{
     display:block;
   }
   .location section .content{
     width:100%;
-    padding:55px;
-  }
-  .location section .content div{
+    padding:55px 55px 25px;
+    height: 300px;
+    -webkit-transition: none;
+}
+
+  .location section .content > div > div{
     color:#9eb6de;
   }
+  .address {
+    -moz-user-select: text;
+    -webkit-user-select: text;
+  }
+  .location b{
+    color:white;
+  }
+ .ico{
+   display:inline-block;
+   width:54px;
+   height:54px;
+  background-color:rgba(0,35,93,0.82);
+  margin-left:10px;
+ }
   .location .logo-locaction h1{
     padding:0;
-    font-weight:normal;
-
+  /*  font-weight:normal;*/
+  }
+  .tab-nav{
+  padding:20px;
+  font-size: 0;
+  background-color:rgba(0,35,93,0.82);
+  padding:0;
+  }
+  .tab-nav .tab{
+    color:white;
+    display:inline-block;
+    text-align:center;
+    font-size:1rem;
+    text-transform:uppercase;
+    padding:20px 0;
+    background-color: rgba(0,35,93,0.3);
+  }
+  .tab-50{
+    width:50%;
+  }
+  .tab-nav .tab.active{
+    background-color:rgba(255,255,255,0.13);
+  }
+  .tabs .tab{
+    display:none;
+  }
+  .tabs .tab.active{
+    display:block;
   }
   .logo{
     text-align:center;
     height:230px;
+    width:100%;
+    z-index:1001;
+  position:absolute;
+
   background: url(images/logo_bg.png) top center/cover no-repeat;
-  -webkit-transition: all 2s;
-  transition: all 2s;
+-webkit-transition: all 1s;
+  transition: all 1s;
   }
   .logo-locaction{
     width:100%;
     height:230px;
     background: url(images/logo_bg.png) top center/cover no-repeat;
-  -webkit-transition: all 2s;
-  transition: all 2s;
+/*  -webkit-transition: all 2s;
+  transition: all 2s;*/
     padding: 146px 330px 0;
   }
   .logo img{
@@ -150,8 +252,8 @@ body{
     text-align:right;
   background: url(images/footer_bg.png) center/cover no-repeat;
   height:100px;
-  -webkit-transition: all 2s;
-  transition: all 2s;
+/*  -webkit-transition: all 2s;
+  transition: all 2s;*/
   }
   #bg{position:absolute;  -webkit-transition: all 1s;transition: all 1s;}
   #bg, #bg > div,.gallery > div{
@@ -163,58 +265,63 @@ body{
     position: absolute;
     width: 100%;
     white-space: nowrap;
+    font-size:0;
 
   }
+
   .gallery > div{
         vertical-align: top;
     display:inline-block;
     -webkit-transition: all 2s;
     transition: all 2s;
+    font-size:1rem;
+  }
+  .gallery > div:nth-child(n+1){
+z-index:1003;
   }
   #p1{
-      background: url(images/photo-workspace1.png) center/cover no-repeat;
+      background: url(images/workspace/photo-workspace1.jpg) center/cover no-repeat;
   }
   #p2{
-      background: url(images/photo-workspace2.png) center/cover no-repeat;
+      background: url(images/workspace/photo-workspace2.jpg) center/cover no-repeat;
   }
   #p3{
-      background: url(images/photo-workspace3.png) center/cover no-repeat;
+      background: url(images/workspace/photo-workspace3.jpg) center/cover no-repeat;
   }
   #p4{
-      background: url(images/photo-workspace4.png) center/cover no-repeat;
+      background: url(images/workspace/photo-workspace4.jpg) center/cover no-repeat;
   }
 
-  #bg .start{
+  /*
+  #wrapper{
     background: url(images/photo-main.png) center/cover no-repeat;
+  }
+*/
+  #bg .start{
+    background: url(images/photo-main.jpg) center/cover no-repeat;
   }
   #bg .main{
-    background: url(images/photo-main.png) center/cover no-repeat;
+    background: url(images/photo-main.jpg) center/cover no-repeat;
   }
+
   #bg .technology{
-    background: url(images/photo-technologies.png) center/cover no-repeat;
+    background: url(images/photo-technologies.jpg) center/cover no-repeat;
   }
   #bg .workspace{
-    background: url(images/photo-workspace.png) center/cover no-repeat;
+    background: url(images/photo-workspace.jpg) center/cover no-repeat;
   }
   #bg .careers{
-    background: url(images/photo-careers.png) center/cover no-repeat;
+    background: url(images/photo-careers-b.jpg) center/cover no-repeat;
   }
-  .loader div{
-    background: rgba(0,35,93,0.82);
 
-  }
   #mapContainer{
     height:640px;width:100%;
   }
-.loader{
-  width:100%;height:100%;position:fixed;
-    background: url(images/photo-loader.jpg) center/cover no-repeat;
-  color:white;text-align:center;
-}
+
 .loader > div{
   width:100%;height:100%;
 }
-.start .arrow{
+.main .arrow{
   bottom: 0;
 }
 .arrow{
@@ -224,7 +331,7 @@ body{
   width:100px;
   height:100px;
   z-index:999;
-  -webkit-transition: all 2s;
+  /*-webkit-transition: all 2s;*/
   cursor:pointer;
 }
 .arrow img{
@@ -266,7 +373,9 @@ body{
   background-color:rgba(255,255,255,0.60);
   color:rgb(0,35,93);
   top:230px;
-
+}
+.menu.white li:nth-child(2){
+  margin-left:-250px;
 }
 .fixed{
   position:fixed;
@@ -326,15 +435,269 @@ body{
 }
 
 /* google maps related end*/
+
 /* erecruter fix */
 .skk_container,.skk_offers td:first-child,.skk_offers {
   background:none!important;
 }
 .skk_row_even, .skk_row_odd{
-  background-color:rgba(78,81,80,0.27)!important;
+  background-color:rgba(127,127,127,0.8)!important;
   display:block;
   margin-bottom:3px;
 }
 .skk_row_even:hover, .skk_row_odd:hover{
   background-color:rgba(78,81,80,0.47)!important;
+}
+
+.pegman {
+    width: 100px;
+    height: 150px;
+    background-image: url("images/pegman3d.png");
+
+    -webkit-animation: play 1.5s steps(16) infinite;
+       -moz-animation: play 1.5s steps(16) infinite;
+        -ms-animation: play 1.5s steps(16) infinite;
+         -o-animation: play 1.5s steps(16) infinite;
+            animation: play 1.5s steps(16) infinite;
+
+            position:absolute;
+            bottom:-15px;
+            text-align:center;
+            z-index: 1003;
+            left:49%;
+}
+.peg{
+  position:absolute;
+  bottom:0px;
+  text-align:center;
+  z-index: 1002;
+  left:55%;
+}
+
+.plan{
+  width:100%;
+  height:10vh;
+  background-image: url("images/plan.png");
+  position:absolute;
+  bottom:10px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  z-index: 1001;
+}
+.plan:hover{
+  background-image: url("images/plan-glow.png");
+}
+.popover img{
+  display:inline-block;
+  height:50px;
+  opacity:0.5;
+}
+.popover div{
+  margin-left:10px;
+  display:inline-block;
+  vertical-align:super;
+}
+.popover div h3{
+  margin:0;
+}
+.popover{
+  text-align:left;
+  color:white;
+  background-color:rgba(0,35,93,0.82);
+  background-clip: padding-box;
+  display:none;
+  position:absolute;
+  padding:20px 20px 20px 10px;
+  bottom:100px;
+  left:50px;
+  border-left: 10px solid rgba(0,35,93,0.82);
+  border-bottom: 10px solid rgba(0,0,0,0);
+
+  -webkit-animation: fade-in .3s linear 1, move-up .3s linear 1;
+          -moz-animation: fade-in .3s linear 1, move-up .3s linear 1;
+          -ms-animation: fade-in .3s linear 1, move-up .3s linear 1;
+
+}
+.popover-parent:hover .popover{
+  display:block;
+}
+@-webkit-keyframes fade-in {
+	from   { opacity: 0; }
+	to { opacity: 1; }
+}
+@-webkit-keyframes move-up {
+	from   { bottom: 80px; }
+	to { bottom: 100px; }
+}
+@-webkit-keyframes play {
+   from { background-position:    0px; }
+     to { background-position: -1600px; }
+}
+
+@-moz-keyframes play {
+   from { background-position:    0px; }
+     to { background-position: -1600px; }
+}
+
+@-ms-keyframes play {
+   from { background-position:    0px; }
+     to { background-position: -1600px; }
+}
+
+@-o-keyframes play {
+   from { background-position:    0px; }
+     to { background-position: -1600px; }
+}
+
+@keyframes play {
+   from { background-position:    0px; }
+     to { background-position: -1600px; }
+}
+
+div.peg {
+    display:inline-block;
+    width: 104px;
+    height: 100px;
+    -webkit-animation: play2 1.4s steps(16) infinite;
+       -moz-animation: play2 1s steps(16) infinite;
+        -ms-animation: play2 1s steps(16) infinite;
+         -o-animation: play2 1s steps(16) infinite;
+            animation: play2 1.4s steps(16) infinite ;
+}
+.peg {
+    background-image: url("https://maps.gstatic.com/tactile/pegman/default/pegman-2x.png");
+}
+
+@-webkit-keyframes play2 {
+   from { background-position: 0 0; }
+     to { background-position: 0 -1664px; }
+}
+
+@-moz-keyframes play2 {
+   from { background-position: 0 0; }
+     to { background-position: 0 -1664px; }
+}
+
+@-ms-keyframes play2 {
+   from { background-position: 0 0; }
+     to { background-position: 0 -1664px; }
+}
+
+@-o-keyframes play2 {
+   from { background-position: 0 0; }
+     to { background-position: 0 -1664px; }
+}
+
+@keyframes play2 {
+   from { background-position: 0 0; }
+     to { background-position: 0 -1664px; }
+}
+
+
+@media all  and (-webkit-min-device-pixel-ratio: 1.5), all and (   min--moz-device-pixel-ratio: 1.5), all and (max-width:1023px){
+  html{
+    font-size:30px;
+  }
+
+  section h1{
+    text-shadow:0px 0px 1px black;
+  }
+  .technology section{
+    top:55%;
+  }
+  .technology section .content{
+    width:50%;
+  }
+  .menu{
+    font-weight:bold;
+    font-size:1.1rem;
+  }
+  .menu.white li:nth-child(2){
+    margin-left:0;
+  }
+  .menu li{
+    padding:36px 20px;
+
+  }
+  .main .content{
+    width:80%;
+  }
+  .footer{
+    text-align:center;
+  }
+  .location section .content{
+    height: 400px;
+  }
+  .location section{
+    top:initial;
+    bottom:100px;
+    left:0;
+  }
+  .location section .tab-nav .tab{
+    font-size:1.2rem;
+  }
+  .careers section{
+    top:120px;
+
+    width:90%;
+    margin:0 auto;
+    left:inherit;
+    margin-bottom:10px;
+  }
+  .careers section ul li{
+    display:inline-block;
+    width:49%;
+  }
+  .careers .offer{
+  width: 90%;
+  margin:0 5%;
+  right:initial;
+  top:120px;
+  position:relative;
+  padding:50px;
+  }
+  .plan{
+    width:100%;
+    height:200px;
+
+    bottom: 40px;
+  }
+  #wrapper{
+    background: url(images/mobile/photo-main.jpg) center/cover no-repeat;
+  }
+
+  #bg .start{
+    background: url(images/mobile/photo-main.jpg) center/cover no-repeat;
+  }
+  #bg .main{
+    background: url(images/mobile/photo-main.jpg) center/cover no-repeat;
+  }
+  #bg .technology{
+    background: url(images/mobile/photo-technologies.jpg) center/cover no-repeat;
+  }
+  #bg .workspace{
+    background: url(images/mobile/photo-workspace.jpg) center/cover no-repeat;
+  }
+  #bg .careers{
+    background: url(images/mobile/photo-careers2.jpg) center/cover no-repeat;
+  }
+
+  .skk_container{
+    margin:0 auto;
+  }
+  .skk_row_even, .skk_row_odd{
+  font-size:2em;
+    margin-bottom:1em;
+    font-size:2em;
+    padding:1em;
+  }
+  .careers .ico {
+    width:108px;
+    height:108px;
+  }
+  .careers .ico img{
+    width:100%;
+  }
+
 }

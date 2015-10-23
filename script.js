@@ -1,3 +1,5 @@
+"use strict";
+
 var logoState = true,
     pageState = "start",
     hash = window.location.hash?window.location.hash:undefined,
@@ -6,32 +8,78 @@ var logoState = true,
     lastScroll = 0,
     map,
     pId=0,
-    pCount=2,
-    dragIgnore = 50;
+    scrolling=false,
+    scrollSpeed=500,
+    pCount=4,
+    dragIgnore = 50,
+    offers = undefined,
+    dbg=false,
+    vertical=window.innerWidth<window.innerHeight,
+    mac= /mac/i.test(navigator.platform);
     //map styles
 var mapGrayscale =[{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}];
 var mapBlue2 = [{"featureType":"all","stylers":[{"saturation":0},{"hue":"#e7ecf0"}]},{"featureType":"road","stylers":[{"saturation":-70}]},{"featureType":"transit","stylers":[{"visibility":"off"}]},{"featureType":"poi","stylers":[{"visibility":"off"}]},{"featureType":"water","stylers":[{"visibility":"simplified"},{"saturation":-60}]}];
-
+if(mac) scrollSpeed=1000;
 function closeLoader(){
-  $('.loader').fadeOut();
-  $('#wrapper').show();
-  $('#bg').css('top','-'+$('#bg .start').position().top+'px');
+  $('.loader').fadeOut(1000);
+  //$('#wrapper').fadeIn();
+  //$('#bg').css('top','-'+$('#bg .start').position().top+'px');
 }
 //initPage();
+document.getElementById('wrapper').scrollTop=0;
+var gallery =document.getElementById('galleryContainer');
+for(var i=1;i<=pCount;i++){
+  $(gallery).append('<div id="p'+i+'"></div>');
+}
 $(window).load(function(){
-  console.log(hash);
   var loadTime = (Date.now()-timerStart);
-  //console.log('loaded',loadTime);
+  clog('loaded',loadTime);
   setTimeout(initPage,delay-loadTime);
 
 })
 function hideLogo(){
-  //$('#wrapper .logo').css('marginTop','-'+$('.logo').height()+'px');
+  $('#wrapper .logo').css('marginTop','-'+$('.logo').height()+'px');
   $('.menu').addClass('fixed').animate({
     top: 0
   }).removeClass('white');
-  $('#wrapper .content').fadeIn();
+$('.arrow.down').fadeOut();
+  $('.main').fadeIn();
+  $('.main .content').show();
   logoState=false;
+
+}
+function clog(log){
+  if(dbg){console.log(log)}
+}
+function loadOffers(){
+  $.getJSON( "offers2.json", function( data ) {
+    clog(data.offers);
+    offers = data.offers;
+    addOffers();
+	});
+
+}
+function addOffers(){
+  for (var i = 0, len = offers.length; i < len; i++) {
+    $('#offersList').append('<li id="offer-'+i+'">'+offers[i].title+"</li>");
+  }
+  $('#offersList li').click(loadOffer);
+}
+function loadOffer(element){
+  var eId = element.target.id.split('-')[1];
+  $('#offerContainer h2').text(offers[eId].title);
+  fillOfferList('offerResponsibilities',offers[eId].responsibilities);
+  fillOfferList('offerRequirements',offers[eId].basic_requirements);
+  fillOfferList('offerNicetohave',offers[eId].nice_to_have);
+  $('#offerContainer .offerForm').text(offers[eId].form);
+  fillOfferList('offerBenefits',offers[eId].benefits);
+  $('.careers .offer').addClass('active');
+ }
+function fillOfferList(elementClass, target){
+  $('#offerContainer .'+elementClass).html('').append('<ul></ul>');
+  for (var i = 0, len = target.length; i < len; i++) {
+    $('#offerContainer .'+elementClass+' ul').append("<li>"+target[i]+"</li>");
+  }
 }
 function setState(state){
   if(state!==undefined){
@@ -42,10 +90,11 @@ function setState(state){
     //$('#wrapper .replacable').hide().empty().append( $('#'+pageState).clone(true)).fadeIn();
     //if(state=='location'){initializeMap()};
     //$('#bg').css('top','-'+($('#bg .'+pageState).position().top)+'px');
-    $('#wrapper').animate({
-      scrollTop: $('#bg .'+pageState).position().top
-    });
-    history.pushState({}, '', '#'+pageState);
+    scrolling=true;
+    $('#wrapper').stop().animate({
+      scrollTop: $('#bg .'+pageState).position().top,
+    },scrollSpeed,function(){scrolling=false;});
+
     $('.menu li[data-target="'+pageState+'"]').addClass('active');
   }
 }
@@ -65,7 +114,12 @@ function nextPhoto(){
     }
     var calcWidth = - pId*$('.gallery').outerWidth(true);
     $('.workspaceContent ').css('marginLeft',calcWidth+'px')
+
   }
+
+}
+function galleryState(){
+    if($('.workspaceContent ').css('marginLeft')!='0px') $('.gallery').addClass('active'); else $('.gallery').removeClass('active');
 }
 function prevPhoto(){
   if(!$('.navigation .arrow.left').hasClass('disabled')&&pageState=='workspace'){
@@ -77,26 +131,31 @@ function prevPhoto(){
     }
     var calcWidth = - pId*$('.gallery').outerWidth(true);
     $('.workspaceContent ').css('marginLeft',calcWidth+'px')
+
   }
+
 }
 function initPage(){
   closeLoader();
   if(hash !== undefined){
-
     setState(hash.split('#')[1]);
   }
   initializeMap();
 }
 //map initailize function
 function initializeMap() {
-	var TILE_SIZE = 256;
-	var wegrzce = new google.maps.LatLng(50.115983,19.96605);
-	//var center = new google.maps.LatLng(50.119106,19.96736);
-	var center = new google.maps.LatLng(50.096418, 19.921529);
+	var TILE_SIZE = 256,
+  mapZoom = 12,
+	wegrzce = new google.maps.LatLng(50.115983,19.96605),
+	center = new google.maps.LatLng(50.081023, 19.793093);
+  if(vertical){
+    center = new google.maps.LatLng(50.060475, 19.918363);
+    mapZoom= 13;
+  }
   var mapOptions = {
-	    zoom: 13,
-		scrollwheel: false,
-		styles:mapBlue2,
+	    zoom: mapZoom,
+		  scrollwheel: false,
+		  styles:mapBlue2,
 	    center: center
   	};
 
@@ -112,7 +171,7 @@ function initializeMap() {
 	    query: 'fortress gaming technologies'
   	};
 
-  	infowindow = new google.maps.InfoWindow();
+  	var infowindow = new google.maps.InfoWindow();
 	var marker = new google.maps.Marker({
 		position: wegrzce,
 		map: map,
@@ -123,7 +182,7 @@ function initializeMap() {
    	var service = new google.maps.places.PlacesService(map);
    	service.textSearch(request2,function (results, status){
 		if (status == google.maps.places.PlacesServiceStatus.OK) {
-      		place = results[0];
+      		var place = results[0];
 	  		contentString="<div id='infoWindow'><h4>FORTRESS Gaming Technologies S.A.</h4><p>Fort 47A, ul. Forteczna 5</p><p>32-086 Węgrzce</p><br/>"+
                     "<p><i class='fa fa-location-arrow'></i> <b>GPS:</b> 50° 6' 55.89\" N 19° 57' 59.9\" E</p>"+
 	                   "</div>";
@@ -149,44 +208,62 @@ $(function(){
   $('.menu li').click(function(){
     if($(this).data('target')!==pageState){
       setState($(this).data('target'));
+      //history.pushState({}, '', '#'+pageState);
     }
   });
   //handle window resize
   $( window ).resize(function() {
-      $('#bg').css('top','-'+($('#bg .'+pageState).position().top)+'px');
+      $('#wrapper').scrollTop($('#bg .'+pageState).position().top);
+      $('#mapContainer').css('height',$('#wrapper').outerHeight(true)-$('.logo-locaction').outerHeight(true)-$('.footer').outerHeight());
   });
+  //loadOffers();
   //handle mousewheel
-  $(window).bind('wheel', function(event) {
-    if(event.timeStamp-lastScroll>200){
-      lastScroll=event.timeStamp;
-      if(event.originalEvent.deltaY>0){
-        setNextState();
-      } else{
-        setPrevState();
-      };
-    }
-   });
+
+/*  if(mac){
+    (function oneWheel(){
+
+		$(window).one('wheel',function(event, delta) {
+			event.preventDefault();
+			if(event.originalEvent.deltaY>0){
+				setNextState();
+      }
+			else{
+				setPrevState();
+      }
+			setTimeout(oneWheel,1000)
+			return false
+		})
+	})();
+
+  }else{
+*/
+    $(window).on('wheel', function(event) {
+      //if(event.timeStamp-lastScroll>200){
+      if(!scrolling){
+        //lastScroll=event.timeStamp;
+        if(event.originalEvent.deltaY>0){
+          setNextState();
+        } else{
+          setPrevState();
+        };
+      }
+     });
+  // }
+   //handle arrow keys
    $(window).keyup(function(e) {
-     console.log(e.which);
      switch (e.which) {
-       case 37:
-         prevPhoto();
-         break;
-       case 38:
-         setPrevState();
-         break;
-       case 39:
-         nextPhoto();
-         break;
-       case 40:
-         setNextState();
-         break;
+       case 37: prevPhoto();break;
+       case 38: setPrevState();break;
+       case 39: nextPhoto();break;
+       case 40: setNextState();break;
        default:
      };
    });
+
+   //handle dragging page
    var mD = 0;//mousedown position
    $('body').on('touchstart mousedown', function(event){
-      //console.log(event.originalEvent.touches[0].clientY,event.type);
+      //clog(event.originalEvent.touches[0].clientY,event.type);
       if(event.type==="touchstart"){
         mD=event.originalEvent.touches[0].clientY;
       }else{
@@ -194,23 +271,22 @@ $(function(){
       }
     });
 
-    var prevent = false;//prevent draging on map to change elements
+    var preventMapDrag = false;//prevent draging on map to change elements
     $('#mapContainer').on('mouseup touchend',function(event){
-      prevent=true;
-      console.log('map touch');
+      preventMapDrag=true;
     });
     $('#bg .location').on('mouseup touchend',function(event){
-      if(prevent===true){
+      if(preventMapDrag===true){
         event.stopPropagation();
       }
-      prevent=false;
-      console.log('map touc2h');
+      preventMapDrag=false;
     })
 
    $('body').on('touchend mouseup', function(event){
       var currentY = event.type==="touchend"?event.originalEvent.changedTouches[0].clientY:event.clientY;
       var diff = currentY - mD;
-      if(Math.abs(diff)>dragIgnore){
+      clog(window.getSelection());
+      if(Math.abs(diff)>dragIgnore && window.getSelection().isCollapsed){
         if(diff<0){
           setNextState();
         }else{
@@ -218,6 +294,9 @@ $(function(){
         }
       }
     });
+    //handle dragging page end
+
+    //handle navigation gallery with arrows
     $('.navigation .arrow').click(function(){
         if($(this).hasClass('right')){
           nextPhoto();
@@ -225,7 +304,26 @@ $(function(){
           prevPhoto();
         }
     });
-   //start map when page loaded
 
-   //google.maps.event.addDomListener(window, 'load', initializeMap);
+    //tabs in location
+    $('.tab-nav .tab').click(function(){
+      $('.tabs .tab.active, .tab-nav .tab.active').removeClass('active');
+      $('#'+$(this).data('target')).addClass('active');
+      $(this).addClass('active');
+    })
+    /*
+    $('.careers ul li').click(function(){
+      //load offer data
+
+    });
+    */
 });
+console.log('\n' +
+'███████╗ ██████╗████████╗    ███████╗    █████╗    \n' +
+'██╔════╝██╔════╝╚══██╔══╝    ██╔════╝   ██╔══██╗   \n' +
+'█████╗  ██║  ███╗  ██║       ███████╗   ███████║   \n' +
+'██╔══╝  ██║   ██║  ██║       ╚════██║   ██╔══██║  \n' +
+'██║     ╚██████╔╝  ██║       ███████║██╗██║  ██║██╗\n' +
+'╚═╝      ╚═════╝   ╚═╝       ╚══════╝╚═╝╚═╝  ╚═╝╚═╝    \n\n' +
+    'We are looking for experienced developers.\n\n'
+);

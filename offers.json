@@ -1,0 +1,176 @@
+{
+    "offers": [
+        {
+            "title": "Systems Integration Engineer",
+            "responsibilities": [
+                "Scripting and developing new features of dedicated Linux OS",
+                "Improving the security model of the OS, using the available hardware components",
+"Integrating delivered components and artifacts through enforcement of provisioning process. Extension of the existing provisioning model",
+"Design and implementation of software artifacts distribution mechanisms in a variety of different deployment scenarios",
+"Development of monitoring services as well as maintenance of system availability",
+"Ability to evaluate various different technical, operational and management solutions to problems, using written language and various media to present alternatives and recommendations"
+            ],
+            "basic_requirements": [
+                "BS/MS Degree in Computer Science, Engineering or Related Field (or equivalent expertise)",
+                "Excellent knowledge of Linux OS / UNIX",
+                "Great knowledge at least one of programming languages: Ruby, Python, Bash, Perl",
+                "Knowledge about network mechanisms and protocols – TCP/IP, DNS, DHCP",
+                "The ability to quickly learn new technologies and solve the existing problems",
+                "High ambition",
+                "English: minimum intermediate"
+            ],
+            "nice_to_have": [
+                "Skills of securing the private data, experience with cryptography",
+                "Familiarity with provisioning and orchestration as for ex. Puppet provided",
+                "Knowledge of LDAP"
+            ],
+            "form": "Full time job. Trial period of 3 months.",
+            "benefits": [
+                "Benefit Multisport",
+                "Private medical care",
+                "Lunches",
+                "Internal and external trainings",
+                "Flexible hours, 8h/day, 40h/week"
+            ]
+        },
+        {
+          "title":"C++ Developer",
+          "responsibilities":["Solving complex problems",
+          "Delivering solution together with unit tests",
+          "Working on distributed system",
+          "Introducing new innovatory ideas"],
+          "basic_requirements":["Good in C++, STL",
+          "Understanding of OOP, SOLID, DRY",
+          "Understanding of Data Structures, Algorithms",
+          "Multithreading experience",
+          "Familiar with C++11, Java",
+          "English: minimum intermediate"],
+          "nice_to_have":["Experience with Linux/UNIX",
+          "Familiar with NoSQL databases",
+          "Familiar with SCA",
+          "Working knowledge of Maven",
+          "Creativity, team player, ambitious",
+          "Open to new technologies"],
+          "form":"Full time job. Trial period of 3 months",
+          "benefits":["Benefit Multisport","Private medical care","Co-financed lunches",
+          "Internal and external trainings","Flexible hours, 8h/day, 40h/week"]
+        },
+        {
+          "title":"Integration Tester",
+          "responsibilities":[
+            "Integrating software",
+            "Controlling software quality",
+            "Planning, designing and executing test cases"
+          ],
+          "basic_requirements":[
+            "Knowledge of Linux OS",
+            "The ability to quickly learn new technologies and solve the existing problems",
+            "Knowledge of software testing techniques",
+            "English at an intermediate level",
+            "Good interpersonal skills",
+            "At least BS Degree in Computer Science, Engineering or a related field (or equivalent expertise)"
+          ],
+          "nice_to_have":[
+            "Experience in software testing",
+            "Basic knowledge of network mechanisms",
+            "Experience in using tools such as Jira, Test Link, Jenkins, Git, MongoDB",
+            "Experience in at least one of the programming languages: Bash, Python",
+            "ISTQB certificate",
+            "Strong problem solving skills",
+            "A fast-reactive, brave, responsible and hardworking team player"
+          ],
+          "form":"Full time job. Trial period of 3 months",
+          "benefits":["Benefit Multisport","Private medical care","Co-financed lunches",
+          "Internal and external trainings","Flexible hours, 8h/day, 40h/week"]
+        },
+        {
+          "title":"IT Systems Support Specialist",
+          "responsibilities":[
+            "Day-to-day technical support over the maintained systems",
+            "Software deployment and preparation",
+            "First contact problem analysis and precise registration",
+            "Cooperation with software developers - work and learn from our best experts",
+            "Taking ownership and care of the technical issues",
+            "Participation in trainings for customers as required",
+            "Documenting troubleshooting and problem resolution steps"
+          ],
+          "basic_requirements":[
+            "BS/MS Degree in Computer Science, Engineering or Related Field (or equivalent expertise)",
+            "Linux command-line experience",
+            "Basic knowledge of LAN/WAN technology",
+            "Bashscripting",
+            "Minimum 1 year documented experience on the similar position",
+            "Very good written and spoken English language skills"
+          ],
+          "nice_to_have":[
+            "Knowledge of computer hardware and software",
+            "An experience in Issue Tracking System (e.g. Jira, Confluence, Redmine, Bugzilla)",
+            "An experience with configuration and administration of VMWare",
+            "An experience in IT systems helpdesk or deployments",
+            "Will to work in flexible hours (24/7 support for IT systems but only on the phone at your place - always extra paid)",
+            "Any IT certificates",
+            "High interpersonal skills",
+            "Fast-reactive, brave team player, with a dose of responsibility"
+          ],
+          "form":"Full time job. Trial period of 3 months",
+          "benefits":["Benefit Multisport","Private medical care","Co-financed lunches",
+          "Internal and external trainings","Flexible hours, 8h/day, 40h/week"]
+        },
+        {
+          "title":"JAVA Developer",
+          "responsibilities":[
+            "Design of a distributed system components",
+            "High quality coding with a good coverage of tests",
+            "Complex problem solving",
+            "Introducing novel and innovatory ideas"
+          ],
+          "basic_requirements":[
+            "BS/MS/PhD Degree in Computer Science, Engineering or Related Field (or equivalent expertise)",
+            "Experience in project realization in accordance with agile methodologies",
+            "Excellent Java SE (6+) knowledge (especially in the context of multi-threading and concurrency) with proven experience (at least 3 years)",
+            "Good Jave EE (5+) knowledge with proven experience (at least 3 years)",
+            "Practical experience with JEE design patterns",
+            "Understanding of OOP, SOLID, DRY principles",
+            "Good knowledge of Windows and Linux operating systems",
+            "Experience with advanced featured of build tools (Maven)",
+            "Practical knowledge of SCM concepts (especially Git)",
+            "English: intermediate"
+          ],
+          "nice_to_have":[
+          "Fast learning, flexible",
+          "Team Player but autonomous when needed",
+          "Ambitious",
+          "Knowledge or experience in:- messaging technologies: Apache ActiveMQ, ZeroMQ - service component architecture: Apache Tuscany - Apache Thrift technology stack - NoSQL databases"
+          ],
+          "form":"Full time job. Trial period of 3 months",
+          "benefits":["Benefit Multisport","Private medical care","Co-financed lunches",
+          "Internal and external trainings","Flexible hours, 8h/day, 40h/week"]
+        },
+        {
+          "title":"Test Automation Engineer",
+          "responsibilities":[
+            "Developing a test framework for web-based applications",
+            "Improving a continuous integration process",
+            "Performing non-functional tests and analysing their results"
+          ],
+          "basic_requirements":[
+            "BS/MS degree in Computer Science, Engineering or related fields (or equivalent expertise)",
+            "At least 3 years of experience in testing or automation",
+            "Very good knowledge of one scripting language (preferred Python)",
+            "Good knowledge of Linux operating systems",
+            "Knowledge of the Selenium Page Object pattern",
+            "Knowledge of the JMeter testing tool",
+            "Strong problem solving skills",
+            "Ability to quickly learn new technologies",
+            "Good writing and speaking skills in English"],
+          "nice_to_have":[
+            "Experience in non-functional testing (performance, security, and load tests)",
+            "Knowledge of the Java programming language",
+            "Knowledge of the Java Virtual Machine architecture"],
+          "form":"Full time job. Trial period of 3 months",
+          "benefits":["Benefit Multisport","Private medical care","Co-financed lunches",
+          "Internal and external trainings","Flexible hours, 8h/day, 40h/week"]
+        }
+
+    ]
+}
