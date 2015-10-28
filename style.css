@@ -3,7 +3,7 @@
         box-sizing: border-box;
 
         }
-html{font-size:18px;}
+html{font-size:1.84vh;}
 body,html{width:100%;height:100%;margin:0;
   -webkit-user-select:none;border:0;
   -moz-user-select: none;}
@@ -24,7 +24,7 @@ body{
 
   h1{
     font-family:Rajdhani;
-    font-size:52px;
+    font-size:2.7vw;
     text-align:right;
     text-transform: uppercase;
     padding: 0 40px;
@@ -47,7 +47,7 @@ body{
     display:inline-block;
   }
   .content strong{
-    font-size:26px;
+    font-size:1.3vw;
     font-weight:bold;
     text-transform:uppercase;
     font-family:Rajdhani;
@@ -158,20 +158,19 @@ body{
     position: absolute;
     z-index:998;
     display: block;
+    left: 16vh;
+    width:29%;
 
-    left: 270px;
-    width:563px;
-    /*-webkit-transition: all 2s;
-    transition: all 2s;*/
   }
   .location section img{
     display:block;
+    width:100%;
   }
   .location section .content{
     width:100%;
-    padding:55px 55px 25px;
-    height: 300px;
+    padding:2.9vw 2.9vw 1.9vw;
     -webkit-transition: none;
+    min-height:31vh;
 }
 
   .location section .content > div > div{
@@ -235,11 +234,13 @@ body{
   }
   .logo-locaction{
     width:100%;
-    height:230px;
+    max-height:230px;
+    height:14vw;
     background: url(images/logo_bg.png) top center/cover no-repeat;
 /*  -webkit-transition: all 2s;
   transition: all 2s;*/
-    padding: 146px 330px 0;
+
+    padding: 15vh 17vw 0;
   }
   .logo img{
     position:relative;
@@ -305,7 +306,7 @@ z-index:1003;
   }
 
   #bg .technology{
-    background: url(images/photo-technologies.jpg) center/cover no-repeat;
+    background: url(images/photo-technologies.jpg) top/cover no-repeat;
   }
   #bg .workspace{
     background: url(images/photo-workspace.jpg) center/cover no-repeat;
@@ -595,11 +596,16 @@ div.peg {
 }
 
 
-@media all  and (-webkit-min-device-pixel-ratio: 1.5), all and (   min--moz-device-pixel-ratio: 1.5), all and (max-width:1023px){
+@media all  and (-webkit-min-device-pixel-ratio: 1.5), all and (   min--moz-device-pixel-ratio: 1.5), all and (min-resolution: 1.5dppx){
   html{
     font-size:30px;
   }
-
+  .content strong{
+    font-size:1.9vh;
+  }
+  h1{
+    font-size:2.6vh;
+  }
   section h1{
     text-shadow:0px 0px 1px black;
   }
@@ -633,9 +639,14 @@ div.peg {
     top:initial;
     bottom:100px;
     left:0;
+    width:55%;
   }
   .location section .tab-nav .tab{
     font-size:1.2rem;
+  }
+  .logo-locaction{
+    height:14vh;
+    padding: 8vh 17vw 0;
   }
   .careers section{
     top:120px;
